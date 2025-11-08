@@ -1,0 +1,27 @@
+# Item catalog. Each item maps to package IDs per manager.
+# Used by install.sh / install.ps1 / omni.py.
+categories:
+  Languages:
+    - {name: Python,  apt: python3, brew: python,  winget: Python.Python.3.12, scoop: python}
+    - {name: Node.js, apt: nodejs,  brew: node,    winget: OpenJS.NodeJS,       scoop: nodejs}
+    - {name: Go,      apt: golang,  brew: go,      winget: GoLang.Go,           scoop: go}
+    - {name: Rust,    custom: "curl -fsSL https://sh.rustup.rs | sh -s -- -y"}
+    - {name: Bun,     custom: "curl -fsSL https://bun.sh/install | bash"}
+    - {name: Deno,    brew: deno,   winget: DenoLand.Deno, scoop: deno}
+  Cloud:
+    - {name: AWS CLI,   brew: awscli,            winget: Amazon.AWSCLI}
+    - {name: gcloud,    custom: "curl -fsSL https://sdk.cloud.google.com | bash"}
+    - {name: Azure CLI, brew: azure-cli,         winget: Microsoft.AzureCLI}
+    - {name: Terraform, brew: terraform,         winget: HashiCorp.Terraform, scoop: terraform}
+    - {name: kubectl,   brew: kubernetes-cli,    winget: Kubernetes.kubectl,  scoop: kubectl}
+    - {name: Helm,      brew: helm,              winget: Helm.Helm,           scoop: helm}
+  Containers:
+    - {name: Docker,    apt: docker.io,          winget: Docker.DockerDesktop}
+  AI/LLM:
+    - {name: Ollama,    custom: "curl -fsSL https://ollama.com/install.sh | sh", winget: Ollama.Ollama}
+  DevTools:
+    - {name: Git,       apt: git, brew: git, winget: Git.Git, scoop: git}
+    - {name: GitHub CLI,apt: gh,  brew: gh,  winget: GitHub.cli, scoop: gh}
+    - {name: ripgrep,   apt: ripgrep, brew: ripgrep, winget: BurntSushi.ripgrep.MSVC, scoop: ripgrep}
+    - {name: fzf,       apt: fzf, brew: fzf, scoop: fzf}
+    - {name: Neovim,    apt: neovim, brew: neovim, winget: Neovim.Neovim, scoop: neovim}
