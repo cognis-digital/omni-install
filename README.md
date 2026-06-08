@@ -24,5 +24,18 @@ powershell -ExecutionPolicy Bypass -File install.ps1
 Edit **[catalog.yaml](catalog.yaml)** to add tools. Want a whole prebaked image instead? See
 **[cognis-devbox](https://github.com/cognis-digital/cognis-devbox)**.
 
+## How it fits
+
+```mermaid
+flowchart LR
+  U[You / CI / Agent] --> R[omni-install]
+  R --> O[Outputs & artifacts]
+  R --> M[MCP / JSON]
+  M --> AI[AI agents]
+  R --> S[Cognis Neural Suite]
+```
+
+**Explore the suite →** [🗂️ all tools](https://github.com/cognis-digital/cognis-neural-suite) · [⭐ awesome-cognis](https://github.com/cognis-digital/awesome-cognis) · [🔗 cognis-sources](https://github.com/cognis-digital/cognis-sources)
+
 ## License
 COCL v1.0 — see [LICENSE](LICENSE).
