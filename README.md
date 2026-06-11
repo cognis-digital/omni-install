@@ -8,7 +8,59 @@
 
 </div>
 
-Pick what you want from a menu; it dispatches to the right package manager (apt/dnf/pacman/brew/winget).
+## Quick start (guided)
+
+New here? **Run one command and type a number.** The guided wizard adapts to how
+familiar you are with the terminal (it asks once, on a scale of 1–5) and then
+walks you through everything with plain-language explanations, showing the exact
+command before it runs anything.
+
+```bash
+# Linux / macOS  — then just type a number
+./setup.sh
+```
+```powershell
+# Windows  — then just type a number
+.\setup.ps1
+```
+
+That's it. The first prompt asks your comfort level; after that you get a
+numbered menu:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║ Cognis Setup Wizard 1.0    method=pipx · familiarity=1        ║
+╚══════════════════════════════════════════════════════════════╝
+  1 · Quick install (recommended starter bundle)
+  2 · Browse by category
+  3 · Pick individual tools
+  4 · Install everything
+  5 · Set up the local AI fleet (--ai mode)
+  6 · Configure (install method, install dir)
+  7 · Verify & health-check installed tools
+  8 · Help / glossary
+  9 · Change familiarity level
+  0 · Exit
+
+  Choose an option (0-9): 1
+```
+
+- **Safe preview** — see commands without running anything: `./setup.sh --dry-run`
+- **Already have a CLI?** The same wizard is a subcommand: `python omni.py setup`
+- **Custom catalog** — point it at any manifest (local path *or* raw URL):
+  `./setup.sh --manifest https://raw.githubusercontent.com/cognis-digital/cognis-arsenal/master/MANIFEST.json`
+
+With no local `MANIFEST.json`, the wizard automatically fetches the canonical
+[cognis-arsenal](https://github.com/cognis-digital/cognis-arsenal) catalog. Offline,
+it still offers local-AI-fleet setup, configuration, health-check, and help. It is
+**stdlib-only** — nothing to `pip install` first.
+
+---
+
+## Package-manager menu (advanced)
+
+Prefer the bare menu that just dispatches to your system package manager
+(apt/dnf/pacman/brew/winget)? Pick what you want and it installs it:
 
 ```bash
 # Linux / macOS

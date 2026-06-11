@@ -1,6 +1,30 @@
 #!/usr/bin/env python3
-"""omni-install — cross-platform menu installer (stdlib only)."""
-import platform, shutil, subprocess, sys
+"""omni-install — cross-platform menu installer (stdlib only).
+
+Subcommands:
+    python omni.py            Quick package-manager menu (languages/clouds/tools).
+    python omni.py setup      Launch the guided Cognis setup wizard (recommended
+                              for first-timers — a numbered, beginner-friendly
+                              menu that adapts to your familiarity level).
+
+`setup` forwards any extra flags to the wizard, e.g.:
+    python omni.py setup --dry-run
+    python omni.py setup --manifest https://raw.githubusercontent.com/cognis-digital/cognis-arsenal/master/MANIFEST.json
+"""
+import os, platform, shutil, subprocess, sys
+
+
+def run_setup(argv):
+    """Delegate to the canonical guided wizard (cognis_setup.py, stdlib only)."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    if here not in sys.path:
+        sys.path.insert(0, here)
+    try:
+        import cognis_setup
+    except Exception as exc:  # pragma: no cover - defensive
+        print(f"could not load the setup wizard: {exc}", file=sys.stderr)
+        return 1
+    return cognis_setup.main(argv)
 CATALOG = {
     "Python": {"apt":"python3","brew":"python","winget":"Python.Python.3.12"},
     "Node.js": {"apt":"nodejs","brew":"node","winget":"OpenJS.NodeJS"},
@@ -34,4 +58,7 @@ def main():
     chosen = names if sel=="a" else [names[int(x)-1] for x in sel.split() if x.isdigit()]
     for n in chosen: print(f"Installing {n}..."); install(n, m)
     return 0
-if __name__=="__main__": sys.exit(main())
+if __name__=="__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "setup":
+        sys.exit(run_setup(sys.argv[2:]))
+    sys.exit(main())
