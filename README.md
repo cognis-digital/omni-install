@@ -8,6 +8,42 @@
 
 </div>
 
+## Usage — step by step
+
+`omni-install` is a stdlib-only, cross-platform menu installer for languages, cloud CLIs, containers, and AI tools — plus a guided Cognis setup wizard.
+
+1. **Install / first run** — fetch and launch (then just type a number):
+
+   ```bash
+   # Linux / macOS
+   bash install.sh
+   # Windows PowerShell:  .\install.ps1
+   ```
+
+2. **Open the package-manager menu** directly via the Python TUI (any OS):
+
+   ```bash
+   python omni.py
+   ```
+
+3. **Run the guided Cognis setup wizard** — the `setup` subcommand adapts to your familiarity level:
+
+   ```bash
+   python omni.py setup
+   ```
+
+4. **Preview before changing anything** — `setup` forwards extra flags to the wizard, e.g. a dry run:
+
+   ```bash
+   python omni.py setup --dry-run
+   ```
+
+5. **Use it in automation** — point the wizard at a manifest for repeatable, scripted provisioning:
+
+   ```bash
+   python omni.py setup --manifest https://raw.githubusercontent.com/cognis-digital/cognis-arsenal/master/MANIFEST.json
+   ```
+
 ## Quick start (guided)
 
 New here? **Run one command and type a number.** The guided wizard adapts to how
