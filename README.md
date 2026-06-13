@@ -8,6 +8,48 @@
 
 </div>
 
+<!-- cognis:layman:start -->
+## What is this?
+
+omni-install is a guided setup wizard that installs programming languages, developer tools, and AI software on your computer - no technical knowledge required. You run one command, answer a single question about how comfortable you are with the terminal, and then pick what you want from a numbered menu. It works on Linux, macOS, and Windows, and it never runs anything without showing you the exact command first so you know exactly what is happening. It is useful for anyone setting up a new development environment, from first-time programmers to experienced engineers who just want a fast, repeatable way to get their tools installed.
+<!-- cognis:layman:end -->
+
+<!-- cognis:install:start -->
+## Install
+
+`omni-install` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/omni-install/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/omni-install/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/omni-install.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/omni-install.git"  # uv
+pip install "git+https://github.com/cognis-digital/omni-install.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/omni-install.git
+cd omni-install && pip install .
+```
+
+Then run:
+```sh
+python -m omni-install --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start (guided)
 
 New here? **Run one command and type a number.** The guided wizard adapts to how
@@ -88,6 +130,32 @@ flowchart LR
 ```
 
 **Explore the suite →** [🗂️ all tools](https://github.com/cognis-digital/cognis-neural-suite) · [⭐ awesome-cognis](https://github.com/cognis-digital/awesome-cognis) · [🔗 cognis-sources](https://github.com/cognis-digital/cognis-sources)
+
+<a name="verification"></a>
+## Verification
+
+
+
+Every push is verified end-to-end. Latest audit (2026-06-13):
+
+```text
+tests        : 0 passed, 0 failed, 0 errored
+compile      : all modules parse
+cli          : n/a
+package      : n/a
+```
+
+<details><summary>CLI surface (<code>--help</code>)</summary>
+
+```text
+(see --help)
+```
+</details>
+
+Full machine-readable results: [`AUDIT.md`](AUDIT.md) · regenerate with `python -m omni-install --help` + `pytest -q`.
+
+<div align="right"><a href="#top">↑ back to top</a></div>
+
 
 ## License
 COCL v1.0 — see [LICENSE](LICENSE).

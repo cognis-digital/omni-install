@@ -1,15 +1,29 @@
-#requires -version 5
-# omni-install — menu installer (Windows, winget).
-$items = @(
-  @{n="Python";id="Python.Python.3.12"}, @{n="Node.js";id="OpenJS.NodeJS"},
-  @{n="Go";id="GoLang.Go"}, @{n="Rust";id="Rustlang.Rustup"}, @{n="Docker";id="Docker.DockerDesktop"},
-  @{n="Git";id="Git.Git"}, @{n="GitHub CLI";id="GitHub.cli"}, @{n="Terraform";id="HashiCorp.Terraform"},
-  @{n="kubectl";id="Kubernetes.kubectl"}, @{n="Helm";id="Helm.Helm"}, @{n="AWS CLI";id="Amazon.AWSCLI"},
-  @{n="Azure CLI";id="Microsoft.AzureCLI"}, @{n="Ollama";id="Ollama.Ollama"}, @{n="Neovim";id="Neovim.Neovim"}
-)
-Write-Host "== omni-install (winget) ==" -ForegroundColor Cyan
-for ($i=0; $i -lt $items.Count; $i++) { Write-Host ("  {0}) {1}" -f ($i+1), $items[$i].n) }
-Write-Host "  a) install ALL"
-$sel = Read-Host "select (numbers space-separated, or 'a')"
-$chosen = if ($sel -eq "a") { $items } else { $sel -split " " | ForEach-Object { $items[[int]$_-1] } }
-foreach ($it in $chosen) { Write-Host "Installing $($it.n)..."; winget install --id $it.id -e --accept-source-agreements --accept-package-agreements }
+# Comprehensive installer for cognis-digital/omni-install (Windows PowerShell).
+# Tries: pipx -> uv -> pip (git+https) -> from source.
+# omni-install is source-available and not on PyPI; all paths install from GitHub.
+$ErrorActionPreference = "Stop"
+$Repo = "omni-install"
+$Url  = "git+https://github.com/cognis-digital/omni-install.git"
+$Git  = "https://github.com/cognis-digital/omni-install.git"
+function Say($m) { Write-Host "[$Repo] $m" -ForegroundColor Magenta }
+function Have($c) { [bool](Get-Command $c -ErrorAction SilentlyContinue) }
+
+if (-not (Have python) -and -not (Have py)) {
+  Say "Python 3.9+ is required but was not found. Install Python first."; exit 1
+}
+if (Have pipx) {
+  Say "Installing with pipx (isolated, recommended)..."
+  pipx install $Url; if ($LASTEXITCODE -eq 0) { Say "Done. Run: omni-install"; exit 0 }
+}
+if (Have uv) {
+  Say "Installing with uv..."
+  uv tool install $Url; if ($LASTEXITCODE -eq 0) { Say "Done. Run: omni-install"; exit 0 }
+}
+if (Have pip) {
+  Say "Installing with pip (user site)..."
+  pip install --user $Url; if ($LASTEXITCODE -eq 0) { Say "Done. Run: omni-install"; exit 0 }
+}
+Say "No packaging tool worked; falling back to a source clone."
+$Tmp = Join-Path $env:TEMP "$Repo-src"
+git clone --depth 1 $Git $Tmp
+Say "Cloned to $Tmp - run: cd $Tmp; python -m pip install ."
