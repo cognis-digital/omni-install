@@ -14,6 +14,16 @@
 omni-install is a guided setup wizard that installs programming languages, developer tools, and AI software on your computer - no technical knowledge required. You run one command, answer a single question about how comfortable you are with the terminal, and then pick what you want from a numbered menu. It works on Linux, macOS, and Windows, and it never runs anything without showing you the exact command first so you know exactly what is happening. It is useful for anyone setting up a new development environment, from first-time programmers to experienced engineers who just want a fast, repeatable way to get their tools installed.
 <!-- cognis:layman:end -->
 
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Cloud & DevTools  ·  **JTF MERIDIAN division:** ATHENA-PRIME · COGNI-2
+
+**Topics:** `cognis` `devtools` `cloud` `developer-tools` `cli`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
 <!-- cognis:install:start -->
 ## Install
 
