@@ -383,7 +383,9 @@ def recommend_method(env: dict) -> str:
 
 def print_environment(env: dict, level: int) -> None:
     box("Your environment", "what the wizard detected on this machine")
-    ok = lambda b: S.green(S.check + " yes") if b else S.red(S.cross + " no")
+
+    def ok(b: bool) -> str:
+        return S.green(S.check + " yes") if b else S.red(S.cross + " no")
     print(f"  Operating system : {S.bold(env['os'])} {env['os_release']}")
     print(f"  Python           : {S.bold(env['python'])}  ({env['python_exe']})")
     print(f"  pip              : {ok(env['has_pip'])}")
