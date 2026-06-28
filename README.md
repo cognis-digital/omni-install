@@ -8,6 +8,32 @@
 
 </div>
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "success": true,
+  "results": [
+    {
+      "package_name": "example_package",
+      "version": "1.2.3",
+      "status": "installed"
+    },
+    {
+      "package_name": "another_example_package",
+      "version": "4.5.6",
+      "status": "updated"
+    }
+  ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `omni-install` is a stdlib-only, cross-platform menu installer for languages, cloud CLIs, containers, and AI tools — plus a guided Cognis setup wizard.
